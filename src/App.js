@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
-import Upload from "./Upload";
-import Streamgraph from "./Streamgraph";
-import Legend from "./Legend";
+import Upload from "./components/FileUpload";
+import Streamgraph from "./components/Streamgraph";
+import Legend from "./components/Legend";
 
 function App() {
   const [data, setData] = useState(null);
