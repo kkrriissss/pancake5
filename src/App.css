@@ -11,17 +11,31 @@
 
 .graph-container {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start; 
+  gap: 0px;
   margin-top: 20px;
-  justify-content: flex-start;
 }
 .legend {
-  margin-left: 0
+  align-items: left;
 }
+
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 10px;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+}
+
 .legend-container {
-  margin-left: 20px;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .legend-title {
@@ -38,12 +52,12 @@
 .legend-item {
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
 }
 
 .legend-color {
+  display: inline-block;
   width: 15px;
   height: 15px;
   margin-right: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #000; 
 }

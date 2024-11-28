@@ -80,8 +80,8 @@ const StreamGraph = ({ data, setLegendData, onHover, onHoverOut }) => {
     layers
       .on("mousemove", (event, d) => {
         const mousePosition = {
-          x: event.pageX + 10, // Position tooltip near cursor
-          y: event.pageY + 10,
+          x: event.pageX - 300,
+          y: event.pageY - 1,
         };
         onHover(d.key, mousePosition);
       })
