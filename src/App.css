@@ -1,8 +1,7 @@
-/* Global App styles */
 .App {
   font-family: Arial, sans-serif;
   padding: 20px;
-  text-align: center;
+  text-align: left;
 }
 
 .app-title {
@@ -10,15 +9,16 @@
   margin-bottom: 20px;
 }
 
-/* Container for graph and legend */
 .graph-container {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start; /* Align graph and legend at the top */
-  margin-top: 30px;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: flex-start;
 }
-
-/* Legend container styling */
+.legend {
+  margin-left: 0
+}
 .legend-container {
   margin-left: 20px;
   text-align: left;
@@ -45,5 +45,5 @@
   width: 15px;
   height: 15px;
   margin-right: 10px;
-  border: 1px solid #ccc; /* Optional border for better visibility */
+  border: 1px solid #ccc;
 }
