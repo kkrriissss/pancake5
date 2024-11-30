@@ -5,7 +5,7 @@ class FileUpload extends Component {
     super(props);
     this.state = {
       file: null,
-      jsonData: null,
+      jsonData: null, // State to store the parsed JSON data
     };
   }
 
@@ -18,8 +18,8 @@ class FileUpload extends Component {
       reader.onload = (e) => {
         const text = e.target.result;
         const json = this.csvToJson(text);
-        this.setState({ jsonData: json });
-        this.props.set_data(json);
+        this.setState({ jsonData: json }); // Set JSON to state
+        this.props.setData(json); // Pass the parsed data to parent component
       };
       reader.readAsText(file);
     }
@@ -33,20 +33,18 @@ class FileUpload extends Component {
     for (let i = 1; i < lines.length; i++) {
       const currentLine = lines[i].split(",");
       const obj = {};
-
       headers.forEach((header, index) => {
         obj[header.trim()] = currentLine[index]?.trim();
       });
 
-
       if (Object.keys(obj).length && lines[i].trim()) {
         const parsedObj = {
           Date: new Date(obj.Date),
-          GPT4: parseInt(obj["GPT-4"], 10),
-          Gemini: parseInt(obj["Gemini"], 10),
-          PaLM2: parseInt(obj["PaLM-2"], 10),
-          Claude: parseInt(obj["Claude"], 10),
-          LLaMA31: parseInt(obj["LLaMA-3.1"], 10),
+          "GPT-4": parseInt(obj["GPT-4"], 10),
+          Gemini: parseInt(obj.Gemini, 10),
+          "PaLM-2": parseInt(obj["PaLM-2"], 10),
+          Claude: parseInt(obj.Claude, 10),
+          "LLaMA-3.1": parseInt(obj["LLaMA-3.1"], 10),
         };
         result.push(parsedObj);
       }
@@ -57,10 +55,14 @@ class FileUpload extends Component {
 
   render() {
     return (
-      <div style={{ backgroundColor: "#f0f0f0", padding: 10 }}>
+      <div style={{ backgroundColor: "#f0f0f0", padding: 20 }}>
         <h2>Upload a CSV File</h2>
         <form onSubmit={this.handleFileSubmit}>
-          <input type="file" accept=".csv" onChange={(event) => this.setState({ file: event.target.files[0] })} />
+          <input
+            type="file"
+            accept=".csv"
+            onChange={(event) => this.setState({ file: event.target.files[0] })}
+          />
           <button type="submit">Upload</button>
         </form>
       </div>

@@ -7,8 +7,8 @@ const Tooltip = ({ data, color, position }) => {
   useEffect(() => {
     if (!data || data.length === 0) return;
 
-    const width = 550;
-    const height = 350;
+    const width = 300;
+    const height = 200;
     const margin = { top: 20, right: 20, bottom: 30, left: 40 };
 
     d3.select(svgRef.current).selectAll("*").remove();
@@ -30,8 +30,6 @@ const Tooltip = ({ data, color, position }) => {
       .nice()
       .range([height - margin.bottom, margin.top]);
 
-    const barColor = color;
-
     svg
       .selectAll(".bar")
       .data(data)
@@ -42,8 +40,7 @@ const Tooltip = ({ data, color, position }) => {
       .attr("y", (d) => yScale(d.value))
       .attr("width", xScale.bandwidth())
       .attr("height", (d) => yScale(0) - yScale(d.value))
-      .attr("fill", barColor);
-
+      .attr("fill", color);
 
     svg
       .append("g")
@@ -68,6 +65,8 @@ const Tooltip = ({ data, color, position }) => {
         borderRadius: "4px",
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
         padding: "10px",
+        transform: "translate(-50%, 0px)",
+        zIndex: 1000,
       }}
     >
       <svg ref={svgRef}></svg>

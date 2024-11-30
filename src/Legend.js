@@ -1,29 +1,37 @@
 import React from "react";
-import "./App.css";
 
-const Legend = ({ legendData }) => {
-
-  const orderedColors = ["#ff7f00", "#984ea3", "#4daf4a", "#377eb8", "#e41a1c"];
-  const orderedLabels = ["GPT4", "Gemini", "PaLM2", "Claude", "LLaMA31"];
-  const alignedLegendData = orderedLabels.map((label, index) => ({
-    label,
-    color: orderedColors[index],
-  }));
+const Legend = ({ keys, colors }) => {
+  const reversedKeys = [...keys].reverse();
+  const reversedColors = [...colors].reverse();
 
   return (
-    <div className="legend-container">
-      <h3 className="legend-title">Legend</h3>
-      <ul className="legend-list">
-        {alignedLegendData.map((item, index) => (
-          <li key={index} className="legend-item">
-            <span
-              className="legend-color"
-              style={{ backgroundColor: item.color }}
-            ></span>
-            {item.label}
-          </li>
-        ))}
-      </ul>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        marginLeft: "-400px", 
+      }}
+    >
+      {reversedKeys.map((key, index) => (
+        <div
+          key={key}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginBottom: "5px",
+          }}
+        >
+          <div
+            style={{
+              width: "15px",
+              height: "15px",
+              backgroundColor: reversedColors[index],
+              marginRight: "10px",
+            }}
+          ></div>
+          <span style={{ fontSize: "12px" }}>{key}</span>
+        </div>
+      ))}
     </div>
   );
 };
